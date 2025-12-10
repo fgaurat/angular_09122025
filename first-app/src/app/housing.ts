@@ -5,6 +5,8 @@ import { HousinglocationInfo } from './housinglocation';
   providedIn: 'root',
 })
 export class Housing {
+  url = 'http://localhost:3000/locations';
+
   readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
 
   housingLocationList: HousinglocationInfo[] = [
@@ -110,11 +112,22 @@ export class Housing {
     },
   ];
 
-  getAllHousingLocations(){
-    return this.housingLocationList;
+  async getAllHousingLocations(): Promise<HousinglocationInfo[]> {
+    const data = await fetch(this.url);
+    return (await data.json()) ?? [];
   }
 
- getHousingLocationById(id: number): HousinglocationInfo | undefined {
-    return this.housingLocationList.find((housingLocation) => housingLocation.id === id);
-  }  
+  async getHousingLocationById(id: number): Promise<HousinglocationInfo | undefined> {
+    // const data = await fetch(`${this.url}?id=${id}`);
+    const data = await fetch(`${this.url}/${id}`);
+    const locationJson = await data.json();
+    // return locationJson[0] ?? {};
+    return locationJson ?? {};
+  }
+
+  submitApplication(firstName: string, lastName: string, email: string) {
+    console.log(
+      `Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`
+    );
+  }
 }

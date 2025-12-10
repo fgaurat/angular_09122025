@@ -1,0 +1,28 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+###
+GET http://{{host}}/locations
+
+###
+
+GET http://localhost:3000/locations/1
+
+
+###
+
+POST http://localhost:3000/locations
+Content-Type: application/json
+
+{
+    "name": "Une maison",
+    "city": "Paris",
+    "state": "IDF",
+    "photo": "https://angular.dev/assets/images/tutorials/common/brandon-griggs-wR11KBaB86U-unsplash.jpg",
+    "availableUnits": 0,
+    "wifi": true,
+    "laundry": true
+}
+
+### 
+DELETE http://localhost:3000/locations/10
