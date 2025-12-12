@@ -1,0 +1,18 @@
+<strong>todo-reactive-form</strong>
+
+<form [formGroup]="todoForm" (ngSubmit)="submitTodo()" >
+  <mat-form-field>
+    <mat-label>Todo title</mat-label>
+    <input matInput required formControlName="title"/>
+    
+    @if(todoForm.get('title')!.hasError('required') && todoForm.get('title')!.touched){
+      <mat-error>Le titre est obligatoire !</mat-error>
+    }
+
+  </mat-form-field>
+
+  <mat-checkbox formControlName="completed">Completed ?</mat-checkbox>
+  <br />
+
+  <button matButton type="submit" [disabled]="todoForm.invalid">Ok</button>
+</form>

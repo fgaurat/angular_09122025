@@ -1,0 +1,19 @@
+<strong>todo-signal-form</strong>
+
+<form (submit)="submitTodo($event)" >
+  
+    <mat-form-field>
+    <mat-label>Todo title</mat-label>
+    <input matInput [field]="todoForm.title"/>
+    
+    @if(todoForm.title().invalid() && todoForm.title().touched()){
+      <mat-error>Le titre est obligatoire !</mat-error>
+    }
+
+  </mat-form-field>
+
+  <mat-checkbox [field]="todoForm.completed">Completed ?</mat-checkbox>
+  <br />
+
+  <button matButton type="submit" [disabled]="todoForm().invalid()">Ok</button>
+</form>
