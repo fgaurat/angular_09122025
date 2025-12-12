@@ -9,6 +9,7 @@ import { JsonPipe } from '@angular/common';
 import { TodoService } from '../../services/todo.service';
 import { MessageQueue } from '../../../../core/services/message-queue';
 import { Actions } from '../../../../core/enums/actions';
+import { TodoStore } from '../../store/todo-store';
 
 @Component({
   selector: 'app-todo-form',
@@ -24,8 +25,7 @@ import { Actions } from '../../../../core/enums/actions';
   styleUrl: './todo-form.css',
 })
 export class TodoForm {
-  todoService: TodoService = inject(TodoService);
-  messageQueueService: MessageQueue = inject(MessageQueue);
+  todoStore = inject(TodoStore)
 
   todoFormModel: Todo = {
     title: '',
@@ -34,7 +34,8 @@ export class TodoForm {
 
   submitTodo() {
     console.log(this.todoFormModel);
-    this.messageQueueService.dispatch({type:Actions.NEW_TODO,payload:this.todoFormModel})
+    this.todoStore.addTodo(this.todoFormModel)
+    // this.messageQueueService.dispatch({type:Actions.NEW_TODO,payload:this.todoFormModel})
     // this.todoService.save(this.todoFormModel)
     //     .subscribe(() => this.messageQueueService.dispatch({type:Actions.NEW_TODO}));
   }

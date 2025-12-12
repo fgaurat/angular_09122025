@@ -30,7 +30,7 @@ export class TodoList implements OnInit{
   }
 
   delete(todo: Todo) {
-   
+   this.todoStore.deleteTodo(todo)
   }
 
 }
