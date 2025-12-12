@@ -1,0 +1,22 @@
+<h1>Hello, {{ title() }}</h1>
+
+<br>
+count: {{count()}}
+<br>
+doubleCount : {{doubleCount()}}
+<br>
+conditionalCount:
+{{conditionalCount()}}
+<br>
+
+
+<button (click)="setTo12()">set to 12</button>
+<br>
+<button (click)="inc()">inc</button>
+<br>
+
+<button (click)="toggleShowCount()">toggleShowCount</button>
+<br>
+<hr>
+<app-show/>
+<app-inc/>

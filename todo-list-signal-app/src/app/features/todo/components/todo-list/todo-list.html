@@ -1,0 +1,44 @@
+<h2>todo-list</h2>
+<!-- <ul>
+    @for(todo of todos$|async;track todo.id){
+    @for(todo of todos();track todo.id){
+
+        <li>{{todo.title}}</li>
+    }
+</ul> -->
+<mat-table [dataSource]="todos()" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let todo">{{ todo.id }}</td>
+  </ng-container>
+  <ng-container matColumnDef="userId">
+    <th mat-header-cell *matHeaderCellDef>userId</th>
+    <td mat-cell *matCellDef="let todo">{{ todo.userId }}</td>
+  </ng-container>
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>title</th>
+    <td mat-cell *matCellDef="let todo">{{ todo.title }}</td>
+  </ng-container>
+  <ng-container matColumnDef="completed">
+    <th mat-header-cell *matHeaderCellDef>completed</th>
+    <td mat-cell *matCellDef="let todo">{{ todo.completed }}</td>
+  </ng-container>
+  
+  <ng-container matColumnDef="chkCompleted">
+    <th mat-header-cell *matHeaderCellDef>chkCompleted</th>
+    <td mat-cell *matCellDef="let todo">
+      <!-- avant: <mat-checkbox [checked]="todo.completed"></mat-checkbox> -->
+      <mat-checkbox [(ngModel)]="todo.completed"></mat-checkbox>
+    </td>
+  </ng-container>
+
+    <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>actions</th>
+    <td mat-cell *matCellDef="let todo">
+          <button matButton="tonal" (click)="delete(todo)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</mat-table>

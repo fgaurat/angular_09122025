@@ -1,0 +1,31 @@
+<h2>todo-form</h2>
+<strong>Template Driven form</strong>
+
+
+
+<form #todoForm="ngForm" (ngSubmit)="submitTodo()" >
+  <mat-form-field>
+    <mat-label>Todo title</mat-label>
+    <input matInput required [(ngModel)]="todoFormModel.title" name="todoTitle" #todoTitle="ngModel"/>
+    @if(todoTitle.invalid && todoTitle.touched){
+      <mat-error>Le titre est obligatoire !</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-checkbox [(ngModel)]="todoFormModel.completed" name="todoCompleted">Completed ?</mat-checkbox>
+  <br />
+
+  <button matButton type="submit" [disabled]="todoForm.invalid">Ok</button>
+</form>
+
+todoTitle.value: {{todoTitle.value}}<br/>
+todoTitle.valid: {{todoTitle.valid}}<br/>
+todoTitle.invalid: {{todoTitle.invalid}}<br/>
+todoTitle.dirty: {{todoTitle.dirty}}<br/>
+todoTitle.pristine: {{todoTitle.pristine}}<br/>
+todoTitle.touched: {{todoTitle.touched}}<br/>
+todoTitle.untouched: {{todoTitle.untouched}}<br/>
+
+<pre>
+  {{todoFormModel|json}}
+</pre>
